@@ -46,30 +46,6 @@ class Producer extends AuthorizedClient
     }
 
     /**
-     * Set produce time
-     *
-     * @param int $time
-     * @return $this
-     */
-    public function setTime($time)
-    {
-        $this->time = $time;
-        return $this;
-    }
-
-    /**
-     * Set topic
-     *
-     * @param string $topic
-     * @return $this
-     */
-    public function setTopic($topic)
-    {
-        $this->topic = $topic;
-        return $this;
-    }
-
-    /**
      * Set producer body
      *
      * @return $this

@@ -21,8 +21,8 @@ class ProducerTest extends \PHPUnit_Framework_TestCase
                 'huxiu_log_test',
                 'PID_huxiu_log',
                 'test_producer',
-                '', //your real accessKey
-                '', //your real accessSecret
+                '7fwBlfFYklA4jRba', //your real accessKey
+                'LVsYE1SSdt76JoM2tsBbMIeY8ktu6T', //your real accessSecret
             ),
         );
     }

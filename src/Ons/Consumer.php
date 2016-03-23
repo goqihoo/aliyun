@@ -19,19 +19,20 @@ class Consumer extends AuthorizedClient
      *
      * @param string $topic
      * @param string $consumerId
-     * @return boolean
+     * @return Response
      */
-    public function consume($topic, $consumerId)
+    public function consume($topic = '', $consumerId = '')
     {
         $this->time         = $this->getTime();
         $this->topic        = $topic;
         $this->consumerId   = $consumerId;
         $client = new HttpClient();
-        $request = $client->post($this->makeRequestUrl());
-        $request->addHeader('AccessKey', $this->getAuthorization()->getAccessKey())
+        $request = $client->get($this->makeRequestUrl())
+            ->addHeader('AccessKey', $this->getAuthorization()->getAccessKey())
             ->addHeader('Signature', $this->getSignature())
             ->addHeader('ConsumerId', $this->consumerId);
-        return $request->send();
+        $response = $client->send($request);
+        return new Response($response);
     }
 
     /**
@@ -41,7 +42,7 @@ class Consumer extends AuthorizedClient
      */
     public function getSignature()
     {
-        $signString= sprintf("%s\n%s\n%s\n%d", $this->topic, $this->consumerId, $this->time);
-        return base64_encode(hash_hmac('sha1', $signString, $this->getAuthorization()->getAccessKey(), true));
+        $signString= sprintf("%s\n%s\n%d", $this->topic, $this->consumerId, $this->time);
+        return base64_encode(hash_hmac('sha1', $signString, $this->getAuthorization()->getAccessSecret(), true));
     }
 }

@@ -15,6 +15,20 @@ class AuthorizationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @param string $accessKey
+     * @param string $accessSecret
+     * @dataProvider getAuthorizationInfo
+     */
+    public function testConstrutor($accessKey, $accessSecret)
+    {
+        $authorization = new Authorization($accessKey, $accessSecret);
+        $this->assertAttributeEquals($accessKey, 'accessKey', $authorization);
+        $this->assertAttributeEquals($accessSecret, 'accessSecret', $authorization);
+    }
+
+    /**
+     * @param string $accessKey
+     * @param string $accessSecret
      * @dataProvider getAuthorizationInfo
      */
     public function testAuthorization($accessKey, $accessSecret)
