@@ -15,13 +15,6 @@ class Consumer extends AuthorizedClient
     public $consumerId;
 
     /**
-     * Topic for ONS
-     *
-     * @var string $topic
-     */
-    public $topic;
-
-    /**
      * consume message from ONS
      *
      * @param string $topic

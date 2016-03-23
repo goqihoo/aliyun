@@ -22,6 +22,13 @@ abstract class AuthorizedClient
     public $time;
 
     /**
+     * Topic for ONS
+     *
+     * @var string $topic
+     */
+    public $topic;
+
+    /**
      * Aliyun Authorization
      *
      * @var Authorization
@@ -37,7 +44,7 @@ abstract class AuthorizedClient
     public function __construct($url, Authorization $authorization)
     {
         $this->url = $url;
-        $this->authorization;
+        $this->authorization = $authorization;
     }
 
     /**
@@ -68,13 +75,6 @@ abstract class AuthorizedClient
      */
     public function makeRequestUrl()
     {
-        return sprintf("%s?topic=%s&time=%d&type=http&key=http", $this->url, $this->topic, $this->time);
+        return sprintf("%s?topic=%s&time=%d&tag=http&key=http", $this->url, $this->topic, $this->time);
     }
-
-    /**
-     * Make signature for authorized request
-     *
-     * @return string
-     */
-    abstract public function getSignature();
 }

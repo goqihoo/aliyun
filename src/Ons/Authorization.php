@@ -29,7 +29,6 @@ class Authorization
     /**
      * Initialize
      *
-     * @param string $url
      * @param string $accessKey
      * @param string $accessSecret
      */

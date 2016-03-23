@@ -1,6 +1,5 @@
 {
     "name": "goqihoo/aliyun",
-    "license": "chengang",
     "type": "library",
     "description": "Easy use for aliyun services：ONS, OSS, etc.",
     "keywords": ["framework", "aliyun", "ons", "oss"],
