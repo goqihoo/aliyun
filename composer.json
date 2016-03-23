@@ -1,0 +1,29 @@
+{
+    "name": "goqihoo/aliyun",
+    "type": "library",
+    "description": "Easy use for aliyun services：ONS, OSS, etc.",
+    "keywords": ["framework", "aliyun", "ons", "oss"],
+
+    "authors" : [
+        {
+            "name": "andrew",
+            "email": "goqihoo@gmail.com",
+            "homepage": "https://github.com/goqihoo"
+        }
+    ],
+
+    "require" : {
+        "guzzle/guzzle": "^3.9"
+    },
+
+    "require-dev":{
+        "phpunit/phpunit": "3.7.*"
+    },
+
+    "autoload" : {
+        "psr-4": {
+            "Goqihoo\\Aliyun": "src",
+            "Goqihoo\\Aliyun\\Tests": "tests"
+        }
+    }
+}
