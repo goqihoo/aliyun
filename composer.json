@@ -22,8 +22,8 @@
 
     "autoload" : {
         "psr-4": {
-            "Goqihoo\\Aliyun": "src",
-            "Goqihoo\\Aliyun\\Tests": "tests"
+            "Goqihoo\\Aliyun\\": "src",
+            "Goqihoo\\Aliyun\\Tests\\": "tests"
         }
     }
 }
