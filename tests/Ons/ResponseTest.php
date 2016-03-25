@@ -16,15 +16,6 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
         $httpResponse = new HttpResponse(403);
         $response = new Response($httpResponse);
         $this->assertTrue($response->isError());
-        $this->assertEquals(Response::$messages[403], $response->getErrorMessage());
-    }
-
-    public function testToArray()
-    {
-        $data = array('test');
-        $httpResponse = new HttpResponse(200);
-        $httpResponse->setBody(json_encode($data));
-        $response = new Response($httpResponse);
-        $this->assertEquals($data, $response->toArray());
+        $this->assertEquals(Response::$status[403], $response->getErrorMessage());
     }
 }

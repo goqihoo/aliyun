@@ -19,10 +19,10 @@ class ConfirmationTest extends \PHPUnit_Framework_TestCase
         return array(
             array(
                 'http://publictest-rest.ons.aliyun.com/message/',
-                'huxiu_log_test',
-                'CID_huxiu_log_storage',
-                'xxSzlwZRUnNkiUNa', //your real accessKey
-                'xLq4kUDWqBk7ITBpNd0FUxdxgm81Le', //your real accessSecret
+                'aliyun_ons_test',
+                'CID-ons-test',
+                'joU9edIYoFoX6WpG', //your real accessKey
+                'jEWhZXsPDHqPh6A4I2Io9QYup10Uce', //your real accessSecret
             ),
         );
     }
@@ -44,10 +44,10 @@ class ConfirmationTest extends \PHPUnit_Framework_TestCase
         $response = $consumer->consume($topic, $consumerId);
         $this->assertTrue($response->isSuccessful());
 
-        $body = $response->toArray();
-        foreach ($body as $msg) {
+        $messages = $response->getMessages();
+        foreach ($messages as $message) {
             $confirmation = new Confirmation($url, $authorization);
-            $response = $confirmation->confirm($topic, $consumerId, $msg['msgHandle']);
+            $response = $confirmation->confirm($topic, $consumerId, $message->getMessageHandle());
             $this->assertTrue($response->isSuccessful());
         }
     }

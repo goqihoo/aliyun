@@ -18,10 +18,10 @@ class ConsumerTest extends \PHPUnit_Framework_TestCase
         return array(
             array(
                 'http://publictest-rest.ons.aliyun.com/message/',
-                'huxiu_log_test',
-                'CID_huxiu_log_storage',
-                '', //your real accessKey
-                '', //your real accessSecret
+                'aliyun_ons_test',
+                'CID-ons-test',
+                'joU9edIYoFoX6WpG', //your real accessKey
+                'jEWhZXsPDHqPh6A4I2Io9QYup10Uce', //your real accessSecret
             ),
         );
     }
@@ -43,7 +43,9 @@ class ConsumerTest extends \PHPUnit_Framework_TestCase
         $response = $consumer->consume($topic, $consumerId);
         $this->assertTrue($response->isSuccessful());
 
-        $body = $response->toArray();
-        $this->assertEquals('test_producer', $body[0]['body']);
+        $messages = $response->getMessages();
+        foreach ($messages as $message) {
+            $this->assertEquals('test_producer', $message->getBody());
+        }
     }
 }

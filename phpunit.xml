@@ -7,6 +7,7 @@
             <file>tests/Ons/ConsumerTest.php</file>
             <file>tests/Ons/ConfirmationTest.php</file>
             <file>tests/Ons/ResponseTest.php</file>
+            <file>tests/Ons/MessageTest.php</file>
         </testsuite>
     </testsuites>
     <filter>

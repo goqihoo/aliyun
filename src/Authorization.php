@@ -1,6 +1,6 @@
 <?php
 
-namespace Goqihoo\Aliyun\Ons;
+namespace Goqihoo\Aliyun;
 
 class Authorization
 {

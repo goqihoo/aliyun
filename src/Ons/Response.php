@@ -25,7 +25,7 @@ class Response
      *
      * @var array
      */
-    public static $messages = array(
+    public static $status = array(
         self::STATUS_PRODUCE_OK => 'Produce Success',
         self::STATUS_CONSUME_OK => 'Consume Success',
         self::STATUS_DELETE_OK  => 'Delete Success',
@@ -43,11 +43,11 @@ class Response
     public $response;
 
     /**
-     * real parsed body
+     * Response messages
      *
      * @var
      */
-    public $data;
+    public $messages;
 
     /**
      * Error message response from ONS
@@ -65,7 +65,7 @@ class Response
     {
         $this->response = $response;
         if ($this->isSuccessful()) {
-            $this->data = json_decode($this->response->getBody(), true);
+            $this->messages = new MessageGroup(json_decode($this->response->getBody(), true));
         }
     }
 
@@ -82,7 +82,7 @@ class Response
             || $statusCode == self::STATUS_PRODUCE_OK) {
             return true;
         }
-        $this->errorMessage = self::$messages[$statusCode];
+        $this->errorMessage = self::$status[$statusCode];
         return false;
     }
 
@@ -97,13 +97,13 @@ class Response
     }
 
     /**
-     * parse response to array
+     * Messages response by ONS
      *
      * @return array
      */
-    public function toArray()
+    public function getMessages()
     {
-        return $this->data;
+        return $this->messages;
     }
 
     /**

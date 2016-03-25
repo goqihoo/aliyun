@@ -18,11 +18,11 @@ class ProducerTest extends \PHPUnit_Framework_TestCase
         return array(
             array(
                 'http://publictest-rest.ons.aliyun.com/message/',
-                'huxiu_log_test',
-                'PID_huxiu_log',
+                'aliyun_ons_test',
+                'PID-ons-test',
                 'test_producer',
-                '', //your real accessKey
-                '', //your real accessSecret
+                'joU9edIYoFoX6WpG', //your real accessKey
+                'jEWhZXsPDHqPh6A4I2Io9QYup10Uce', //your real accessSecret
             ),
         );
     }
