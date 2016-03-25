@@ -2,7 +2,7 @@
 
 namespace Goqihoo\Aliyun\Tests\Ons;
 
-use Goqihoo\Aliyun\Ons\Authorization;
+use Goqihoo\Aliyun\Authorization;
 
 class AuthorizationTest extends \PHPUnit_Framework_TestCase
 {

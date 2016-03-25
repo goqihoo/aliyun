@@ -2,7 +2,7 @@
 
 namespace Goqihoo\Aliyun\Ons;
 
-use Goqihoo\Aliyun\Ons\Authorization;
+use Goqihoo\Aliyun\Authorization;
 
 abstract class AuthorizedClient
 {

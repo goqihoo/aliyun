@@ -2,7 +2,7 @@
 
 namespace Goqihoo\Aliyun\Tests\Ons;
 
-use Goqihoo\Aliyun\Ons\Authorization;
+use Goqihoo\Aliyun\Authorization;
 use Goqihoo\Aliyun\Ons\Confirmation;
 use Goqihoo\Aliyun\Ons\Consumer;
 

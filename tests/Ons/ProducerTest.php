@@ -2,7 +2,7 @@
 
 namespace Goqihoo\Aliyun\Tests\Ons;
 
-use Goqihoo\Aliyun\Ons\Authorization;
+use Goqihoo\Aliyun\Authorization;
 use Goqihoo\Aliyun\Ons\Producer;
 
 class ProducerTest extends \PHPUnit_Framework_TestCase
