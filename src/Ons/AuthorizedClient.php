@@ -99,6 +99,6 @@ abstract class AuthorizedClient
      */
     public function makeRequestUrl()
     {
-        return sprintf("%s?topic=%s&time=%d&tag=http&key=http", $this->url, $this->topic, $this->time);
+        return sprintf("%s?topic=%s&time=%d", $this->url, $this->topic, $this->time);
     }
 }

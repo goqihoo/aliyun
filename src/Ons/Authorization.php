@@ -6,13 +6,6 @@ class Authorization
 {
 
     /**
-     * ONS message server url
-     *
-     * @var string
-     */
-    private $url;
-
-    /**
      * accessKey provider by Aliyun
      *
      * @var string

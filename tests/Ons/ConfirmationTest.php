@@ -3,9 +3,10 @@
 namespace Goqihoo\Aliyun\Tests\Ons;
 
 use Goqihoo\Aliyun\Ons\Authorization;
+use Goqihoo\Aliyun\Ons\Confirmation;
 use Goqihoo\Aliyun\Ons\Consumer;
 
-class ConsumerTest extends \PHPUnit_Framework_TestCase
+class ConfirmationTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -20,8 +21,8 @@ class ConsumerTest extends \PHPUnit_Framework_TestCase
                 'http://publictest-rest.ons.aliyun.com/message/',
                 'huxiu_log_test',
                 'CID_huxiu_log_storage',
-                '', //your real accessKey
-                '', //your real accessSecret
+                'xxSzlwZRUnNkiUNa', //your real accessKey
+                'xLq4kUDWqBk7ITBpNd0FUxdxgm81Le', //your real accessSecret
             ),
         );
     }
@@ -36,7 +37,7 @@ class ConsumerTest extends \PHPUnit_Framework_TestCase
      * @param string $accessSecret
      * @dataProvider getMessageQueueInfo
      */
-    public function testConsume($url, $topic, $consumerId, $accessKey, $accessSecret)
+    public function testConfirm($url, $topic, $consumerId, $accessKey, $accessSecret)
     {
         $authorization = new Authorization($accessKey, $accessSecret);
         $consumer = new Consumer($url, $authorization);
@@ -44,6 +45,10 @@ class ConsumerTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($response->isSuccessful());
 
         $body = $response->toArray();
-        $this->assertEquals('test_producer', $body[0]['body']);
+        foreach ($body as $msg) {
+            $confirmation = new Confirmation($url, $authorization);
+            $response = $confirmation->confirm($topic, $consumerId, $msg['msgHandle']);
+            $this->assertTrue($response->isSuccessful());
+        }
     }
 }
