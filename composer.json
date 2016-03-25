@@ -1,6 +1,7 @@
 {
     "name": "goqihoo/aliyun",
     "type": "library",
+    "license": "andrew",
     "description": "Easy use for aliyun services：ONS, OSS, etc.",
     "keywords": ["framework", "aliyun", "ons", "oss"],
     "version":"0.0.1",
