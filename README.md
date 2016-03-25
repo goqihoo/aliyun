@@ -3,6 +3,9 @@
 Usage
 
 1. Produce
+$authorization = new Authorization($accessKey, $accessSecret);
+$producer = new Producer($url, $authorization);
+$producer->produce($topic, $producerId, $body);
 
 2. Consume
 
