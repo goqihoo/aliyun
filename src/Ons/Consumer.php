@@ -26,8 +26,8 @@ class Consumer extends AuthorizedClient
         $this->time         = $this->getTime();
         $this->topic        = $topic;
         $this->consumerId   = $consumerId;
-        $client = new HttpClient();
-        $request = $client->get($this->makeRequestUrl())
+        $client = $this->getHttpClinet();
+        $request = $client->get($this->makeRequestUrl(), null)
             ->addHeader('AccessKey', $this->getAuthorization()->getAccessKey())
             ->addHeader('Signature', $this->getSignature())
             ->addHeader('ConsumerId', $this->consumerId);

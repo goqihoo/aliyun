@@ -16,7 +16,7 @@ class Message
      *
      * @param array $data
      */
-    public function __construct($data)
+    public function __construct($data = array())
     {
         $this->data = $data;
     }
@@ -39,6 +39,16 @@ class Message
     public function getBody()
     {
         return $this->data['body'];
+    }
+
+    /**
+     * Set body content
+     *
+     * @return void
+     */
+    public function setBody($body)
+    {
+        $this->data['body'] = $body;
     }
 
     /**

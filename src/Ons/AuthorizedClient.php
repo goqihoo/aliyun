@@ -3,6 +3,7 @@
 namespace Goqihoo\Aliyun\Ons;
 
 use Goqihoo\Aliyun\Authorization;
+use Guzzle\Http\Client as HttpClient;
 
 abstract class AuthorizedClient
 {
@@ -36,6 +37,18 @@ abstract class AuthorizedClient
     private $authorization;
 
     /**
+     * Request timeout
+     *
+     * @var int
+     */
+    private $timeout;
+
+    /**
+     * Show http errors or not
+     */
+    private $showHttpErrors = true;
+
+    /**
      * Initialize
      *
      * @param string $url
@@ -48,6 +61,38 @@ abstract class AuthorizedClient
     }
 
     /**
+     * Set timeout for response
+     *
+     * @param int $timeout
+     */
+    public function setTimeout($timeout = null)
+    {
+        if ($timeout !== null) {
+            $this->timeout = $timeout;
+        }
+    }
+
+    /**
+     * Get timeout of response
+     *
+     * @return int
+     */
+    public function getTimeout()
+    {
+        return $this->timeout;
+    }
+
+    /**
+     * Disable throw http exception
+     *
+     * @return void
+     */
+    public function disableHttpErrors()
+    {
+        $this->showHttpErrors = false;
+    }
+
+    /**
      * Get authorization from producer
      *
      * @return Authorization
@@ -55,6 +100,22 @@ abstract class AuthorizedClient
     public function getAuthorization()
     {
         return $this->authorization;
+    }
+
+    /**
+     * Build http client
+     *
+     * @return HttpClient
+     */
+    public function getHttpClinet()
+    {
+        $client = new HttpClient();
+        $options = array();
+        if ($this->getTimeout() > 0) {
+            $options['timeout'] = $this->getTimeout();
+        }
+        $options['http_errors'] = $this->showHttpErrors;
+        return $client;
     }
 
     /**
