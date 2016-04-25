@@ -3,6 +3,7 @@
 namespace Goqihoo\Aliyun\Tests\Ons;
 
 use Goqihoo\Aliyun\Authorization;
+use Goqihoo\Aliyun\Ons\Message;
 use Goqihoo\Aliyun\Ons\Producer;
 
 class ProducerTest extends \PHPUnit_Framework_TestCase
@@ -62,7 +63,9 @@ class ProducerTest extends \PHPUnit_Framework_TestCase
         $sign = "w3zcLtNkj/+virVsjDbFbxKri8Q=";
         $authorization = new Authorization($accessKey, $accessSecret);
         $producer = new Producer('', $authorization);
-        $producer->setBody($body)
+        $message = new Message();
+        $message->setBody($body);
+        $producer->setMessage($message)
                  ->setTopic($topic)
                  ->setProducerId($producerId)
                  ->setTime($time);
@@ -84,7 +87,9 @@ class ProducerTest extends \PHPUnit_Framework_TestCase
     {
         $authorization = new Authorization($accessKey, $accessSecret);
         $producer = new Producer($url, $authorization);
-        $response = $producer->produce($topic, $producerId, $body);
+        $message = new Message();
+        $message->setBody($body);
+        $response = $producer->produce($topic, $producerId, $message);
         $this->assertTrue($response->isSuccessful());
     }
 }
