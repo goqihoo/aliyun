@@ -4,7 +4,6 @@
     "license": "andrew",
     "description": "Easy use for aliyun services：ONS, OSS, etc.",
     "keywords": ["framework", "aliyun", "ons", "oss"],
-    "version":"0.0.1",
 
     "authors" : [
         {
@@ -26,6 +25,12 @@
         "psr-4": {
             "Goqihoo\\Aliyun\\": "src",
             "Goqihoo\\Aliyun\\Tests\\": "tests"
+        }
+    },
+
+    "extra" : {
+        "branch-alias": {
+            "dev-master": "1.0.1"
         }
     }
 }
