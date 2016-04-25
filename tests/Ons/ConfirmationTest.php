@@ -47,7 +47,7 @@ class ConfirmationTest extends \PHPUnit_Framework_TestCase
         $messages = $response->getMessages();
         foreach ($messages as $message) {
             $confirmation = new Confirmation($url, $authorization);
-            $response = $confirmation->confirm($topic, $consumerId, $message->getMessageHandle());
+            $response = $confirmation->confirm($topic, $consumerId, $message);
             $this->assertTrue($response->isSuccessful());
         }
     }

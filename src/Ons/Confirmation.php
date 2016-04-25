@@ -8,11 +8,11 @@ class Confirmation extends AuthorizedClient
 {
 
     /**
-     * Message handler from ONS
+     * Message for confirmation
      *
-     * @var string $consumerId
+     * @var Message $message
      */
-    public $messageHandle;
+    public $message;
 
     /**
      * ConsumerId on Aliyun
@@ -26,17 +26,17 @@ class Confirmation extends AuthorizedClient
      *
      * @param string $topic
      * @param string $consumerId
-     * @param string $messageHandle
+     * @param Message $message
      * @return Response
      */
-    public function confirm($topic = '', $consumerId = '', $messageHandle = '')
+    public function confirm($topic = '', $consumerId = '', Message $message)
     {
         $this->time           = $this->getTime();
         $this->topic          = $topic;
         $this->consumerId     = $consumerId;
-        $this->messageHandle = $messageHandle;
+        $this->message        = $message;
         $client = new HttpClient();
-        $request = $client->delete($this->makeRequestUrl().'&msgHandle='.$this->messageHandle)
+        $request = $client->delete($this->makeRequestUrl().'&msgHandle='.$message->getMessageHandle())
             ->addHeader('AccessKey', $this->getAuthorization()->getAccessKey())
             ->addHeader('Signature', $this->getSignature())
             ->addHeader('ConsumerId', $this->consumerId);
@@ -51,7 +51,7 @@ class Confirmation extends AuthorizedClient
      */
     public function getSignature()
     {
-        $signString= sprintf("%s\n%s\n%s\n%d", $this->topic, $this->consumerId, $this->messageHandle, $this->time);
+        $signString= sprintf("%s\n%s\n%s\n%d", $this->topic, $this->consumerId, $this->message->getMessageHandle(), $this->time);
         return base64_encode(hash_hmac('sha1', $signString, $this->getAuthorization()->getAccessSecret(), true));
     }
 }

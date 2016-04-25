@@ -36,7 +36,7 @@ class Producer extends AuthorizedClient
         $this->producerId   = $producerId;
         $this->message      = $message;
         $client = $this->getHttpClinet();
-        $request = $client->post($this->makeRequestUrl(), array(), $message->getBody())
+        $request = $client->post($this->makeRequestUrl(), array(), $this->message->getBody())
                     ->addHeader('AccessKey', $this->getAuthorization()->getAccessKey())
                     ->addHeader('Signature', $this->getSignature())
                     ->addHeader('ProducerId', $this->producerId);
