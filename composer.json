@@ -18,6 +18,7 @@
     },
 
     "require-dev":{
+        "guzzle/guzzle": "^3.9",
         "phpunit/phpunit": "3.7.*"
     },
 
