@@ -3,7 +3,7 @@
 namespace Goqihoo\Aliyun\Ons;
 
 use Goqihoo\Aliyun\Authorization;
-use Guzzle\Http\Client as HttpClient;
+use GuzzleHttp\Client as HttpClient;
 
 abstract class AuthorizedClient
 {
@@ -109,13 +109,12 @@ abstract class AuthorizedClient
      */
     public function getHttpClinet()
     {
-        $client = new HttpClient();
         $options = array();
         if ($this->getTimeout() > 0) {
             $options['timeout'] = $this->getTimeout();
         }
         $options['http_errors'] = $this->showHttpErrors;
-        return $client;
+        return new HttpClient($options);
     }
 
     /**

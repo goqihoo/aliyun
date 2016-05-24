@@ -3,6 +3,7 @@
 namespace Goqihoo\Aliyun\Ons;
 
 use Guzzle\Http\Client as HttpClient;
+use GuzzleHttp\Psr7\Request;
 
 class Confirmation extends AuthorizedClient
 {
@@ -35,11 +36,13 @@ class Confirmation extends AuthorizedClient
         $this->topic          = $topic;
         $this->consumerId     = $consumerId;
         $this->message        = $message;
-        $client = new HttpClient();
-        $request = $client->delete($this->makeRequestUrl().'&msgHandle='.$message->getMessageHandle())
-            ->addHeader('AccessKey', $this->getAuthorization()->getAccessKey())
-            ->addHeader('Signature', $this->getSignature())
-            ->addHeader('ConsumerId', $this->consumerId);
+        $url = $this->makeRequestUrl().'&msgHandle='.$message->getMessageHandle();
+        $client = $this->getHttpClinet();
+        $request = new Request('DELETE', $url, array(
+            'AccessKey'  => $this->getAuthorization()->getAccessKey(),
+            'Signature'  => $this->getSignature(),
+            'ConsumerId' => $this->consumerId,
+        ));
         $response = $client->send($request);
         return new Response($response);
     }

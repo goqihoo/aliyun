@@ -3,6 +3,7 @@
 namespace Goqihoo\Aliyun\Ons;
 
 use Guzzle\Http\Client as HttpClient;
+use GuzzleHttp\Psr7\Request;
 
 class Producer extends AuthorizedClient
 {
@@ -36,10 +37,12 @@ class Producer extends AuthorizedClient
         $this->producerId   = $producerId;
         $this->message      = $message;
         $client = $this->getHttpClinet();
-        $request = $client->post($this->makeRequestUrl(), array(), $this->message->getBody())
-                    ->addHeader('AccessKey', $this->getAuthorization()->getAccessKey())
-                    ->addHeader('Signature', $this->getSignature())
-                    ->addHeader('ProducerId', $this->producerId);
+
+        $request = new Request('POST', $this->makeRequestUrl(), array(
+            'AccessKey'  => $this->getAuthorization()->getAccessKey(),
+            'Signature'  => $this->getSignature(),
+            'ProducerId' => $this->producerId,
+        ), $this->message->getBody());
         $response = $client->send($request);
         return new Response($response);
     }

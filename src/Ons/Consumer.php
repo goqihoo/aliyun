@@ -3,6 +3,7 @@
 namespace Goqihoo\Aliyun\Ons;
 
 use Guzzle\Http\Client as HttpClient;
+use GuzzleHttp\Psr7\Request;
 
 class Consumer extends AuthorizedClient
 {
@@ -27,10 +28,11 @@ class Consumer extends AuthorizedClient
         $this->topic        = $topic;
         $this->consumerId   = $consumerId;
         $client = $this->getHttpClinet();
-        $request = $client->get($this->makeRequestUrl(), null)
-            ->addHeader('AccessKey', $this->getAuthorization()->getAccessKey())
-            ->addHeader('Signature', $this->getSignature())
-            ->addHeader('ConsumerId', $this->consumerId);
+        $request = new Request('GET', $this->makeRequestUrl(), array(
+            'AccessKey'  => $this->getAuthorization()->getAccessKey(),
+            'Signature'  => $this->getSignature(),
+            'ConsumerId' => $this->consumerId,
+        ));
         $response = $client->send($request);
         return new Response($response);
     }
