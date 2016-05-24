@@ -2,7 +2,7 @@
 
 namespace Goqihoo\Aliyun\Ons;
 
-use Guzzle\Http\Message\Response as HttpResponse;
+use \GuzzleHttp\Psr7\Response as HttpResponse;
 
 class Response
 {

@@ -3,7 +3,7 @@
 namespace Goqihoo\Aliyun\Ons;
 
 use Goqihoo\Aliyun\Authorization;
-use GuzzleHttp\Client as HttpClient;
+use \GuzzleHttp\Client as HttpClient;
 
 abstract class AuthorizedClient
 {
